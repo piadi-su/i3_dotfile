@@ -1,0 +1,58 @@
+#!/bin/bash
+source "$HOME/.cache/wal/colors.sh"
+
+players=("kew" "spotify" "spotifyd")
+active_player=""
+
+# Trova player in PLAYING
+for p in "${players[@]}"; do
+    if playerctl -l | grep -q "^$p$"; then
+        status=$(playerctl --player="$p" status 2>/dev/null)
+        if [ "$status" = "Playing" ]; then
+            active_player="$p"
+            break
+        fi
+    fi
+done
+
+# Se nessuno sta suonando, prendiamo il primo disponibile
+if [ -z "$active_player" ]; then
+    for p in "${players[@]}"; do
+        if playerctl -l | grep -q "^$p$"; then
+            active_player="$p"
+            break
+        fi
+    done
+fi
+
+# Funzione per troncare a N caratteri e aggiungere "..."
+truncate_cut() {
+    local str="$1"
+    local max="$2"
+    # prendi i primi max caratteri
+    local truncated=$(echo -n "$str" | head -c "$max")
+    # aggiungi ... se era più lungo
+    if [ "${#str}" -gt "$max" ]; then
+        truncated="${truncated}..."
+    fi
+    echo "$truncated"
+}
+
+if [ -n "$active_player" ]; then
+    status=$(playerctl --player="$active_player" status 2>/dev/null)
+    artist=$(playerctl --player="$active_player" metadata artist 2>/dev/null)
+    title=$(playerctl --player="$active_player" metadata title 2>/dev/null)
+
+    # Tronca titolo a 20 caratteri
+    title=$(truncate_cut "$title" 20)
+
+    if [ "$status" = "Playing" ]; then
+        echo "%{F$color2} $artist - $title%{F-}"
+    elif [ "$status" = "Paused" ]; then
+        echo "♪ %{F$color3} $artist - $title%{F-}"
+    else
+        echo "%{F$color1} ♪ No music up %{F-}"
+    fi
+else
+    echo "%{F$color1} ♪ No music up %{F-}"
+fi

@@ -1,0 +1,22 @@
+add_newline = false
+
+format = """
+$directory $git_branch
+$character
+"""
+
+[directory]
+format = "[$path]($style)"
+style = "bold cyan"
+truncation_length = 0
+
+[git_branch]
+format = "[$branch]($style)"
+style = "bold purple"
+
+[character]
+success_symbol = "[λ](bold purple) "
+error_symbol = "[λ](bold red) "
+# //-----old prompt 
+
+
