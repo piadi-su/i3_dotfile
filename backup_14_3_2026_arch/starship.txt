@@ -1,0 +1,57 @@
+add_newline = false
+
+format = """
+$directory $git_branch
+$character
+"""
+
+[directory]
+format = "[$path]($style)"
+style = "bold cyan"
+truncation_length = 0
+
+[git_branch]
+format = "[$branch]($style)"
+style = "bold purple"
+
+[character]
+success_symbol = "[λ](bold purple) "
+error_symbol = "[λ](bold red) "
+
+#kanji
+# テ
+# し
+# わ
+# ホ
+# ネ
+# ト
+# ま
+
+#lamba
+# λ
+
+# add_newline = false
+#
+# format = "[\\[](bold red)$username[@](bold green)$hostname $directory[\\]](bold red)$character"
+#
+# [username]
+# show_always = true
+# style_user = "bold yellow"
+# style_root = "bold yellow"
+# format = "[$user]($style)"
+#
+# [hostname]
+# ssh_only = false
+# style = "bold blue"
+# format = "[$hostname]($style)"
+#
+# [directory]
+# truncation_length = 1
+# truncate_to_repo = false
+# style = "bold purple"
+# format = " [$path]($style)"
+#
+# [character]
+# success_symbol = "[\\$](white)"
+# error_symbol = "[\\$](white)"
+

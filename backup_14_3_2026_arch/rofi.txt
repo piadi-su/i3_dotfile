@@ -1,0 +1,9 @@
+configuration {
+    show-icons: false;
+    font: "Iosevka Nerd Font 12";
+    modi: "drun,run";
+}
+
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+
