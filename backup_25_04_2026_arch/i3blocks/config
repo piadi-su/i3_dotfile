@@ -1,0 +1,32 @@
+# Separatore
+separator=true
+separator_block_width=15
+
+[music]
+command=~/.config/i3blocks/media.sh
+interval=1
+
+[volume]
+command=~/.config/i3blocks/volume.sh
+interval=1
+
+
+[volume]
+command=~/.config/i3blocks/localip.sh
+interval=10
+
+[battery]
+label=bat
+command=cat /sys/class/power_supply/BAT0/capacity | awk '{print $1 "%"}'
+interval=30
+
+
+[memory]
+label=RAM 
+command=free -h | awk '/Mem:/ {print $3 "/" $2}'
+interval=5
+
+
+[time]
+command=date '+%a/%d :: %H:%M '
+interval=60

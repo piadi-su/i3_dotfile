@@ -1,0 +1,72 @@
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+configuration {
+    modi: "drun,run";
+    show-icons: false;
+
+    matching: "fuzzy";
+    sorting-method: "fzf";
+
+    drun-display-format: "{name}";
+    display-drun: "";
+    display-run: "";
+
+    // font: "JetBrainsMono Nerd Font 10";
+    font: "Iosevka Nerd Font 11";
+
+    location: 0;
+    anchor: center;
+
+    width: 500;
+    lines: 4;
+
+    padding: 0;
+    border: 0;
+}
+
+/* ===== WINDOW ===== */
+window {
+    background-color: @background;
+    border: 2px;
+    border-color: @color4;   /* ← colore pywal */
+    border-radius: 16px;
+}
+
+/* ===== MAIN ===== */
+mainbox {
+    children: [ "inputbar", "listview" ];
+    spacing: 8;
+    padding: 10px;
+}
+
+/* ===== INPUT ===== */
+inputbar {
+    children: [ "entry" ];
+    padding: 6px 10px;
+}
+
+entry {
+    text-color: @foreground;
+    placeholder: "Search...";
+    placeholder-color: @color8;
+}
+
+/* ===== LIST ===== */
+listview {
+    lines: 4;
+    spacing: 4;
+    scrollbar: false;
+}
+
+/* ===== ELEMENT ===== */
+element {
+    padding: 6px 10px;
+    border-radius: 10px;
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element selected {
+    background-color: @color4;
+    text-color: @background;
+}
